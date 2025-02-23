@@ -1,21 +1,6 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
 
-    {{-- <article class="py-8 max-w-screen-md">
-        <h2 class="mb-1 text-3xl tracking-tight font-bold text-gray-900">{{ $post->title }}</h2>
-        <div>
-            By
-            <a class="text-base text-gray-500 hover:underline"
-                href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a>
-            In
-            <a class="text-base text-gray-500 hover:underline"
-                href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a> |
-            {{ $post->created_at->diffForHumans() }}
-        </div>
-        <p class="my-4 font-light">{{ $post->body }}</p>
-        <a href="/posts" class="font-medium text-blue-500 hover:underline">Back to posts &laquo;</a>
-    </article> --}}
-
     <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
             <article
@@ -25,17 +10,17 @@
                         posts</a>
                     <address class="flex items-center my-6 not-italic">
                         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                            <img class="mr-4 w-16 h-16 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                            <img class="mr-4 w-16 h-16 rounded-full" src="{{ asset('img/tenochtitlan.png') }}"
                                 alt="{{ $post->author->name }}">
                             <div>
-                                <a href="/authors/{{ $post->author->username }}" rel="author"
+                                <a href="/posts?author={{ $post->author->username }}" rel="author"
                                     class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author->name }}</a>
                                 <p class="text-base text-gray-500 dark:text-gray-400 mb-1">
                                     {{ $post->created_at->diffForHumans() }}</p>
                                 <span
                                     class="bg-{{ $post->category->color }}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                                    <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                                    <a
+                                        href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                                 </span>
                             </div>
                         </div>

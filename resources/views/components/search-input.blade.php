@@ -1,4 +1,4 @@
-<form class="max-w-xl mx-auto" action="/posts" method="GET">
+<form class="max-w-xl mx-auto mb-6" action="/posts" method="GET">
     @if (request('category'))
         <input type="hidden" name="category" value="{{ request('category') }}">
     @endif

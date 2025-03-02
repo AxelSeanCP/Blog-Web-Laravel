@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function show() 
     {
-        return view('auth.login');
+        return view('auth.login', ['title' => 'Login']);
     }
 
     public function login(Request $request) 
@@ -20,10 +20,12 @@ class LoginController extends Controller
             'password' => 'required|string'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
             return redirect('/home');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        return back()->withErrors(['loginError' => 'Invalid credentials']);
     }
 }

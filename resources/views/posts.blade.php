@@ -1,6 +1,4 @@
-<x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
-
+<x-layout title="{{ $title }}">
     <x-search-input></x-search-input>
 
     {{ $posts->links() }}
@@ -12,12 +10,13 @@
                     class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <span
-                            class="bg-{{ $post->category->color }}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+                            class="text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+
                             <a href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                         </span>
                         <span class="text-sm">{{ $post->created_at->diffForHumans() }}</span>
                     </div>
-                    <a href="/posts/{{ $post->slug }}" class="hover:underline">
+                    <a href="{{ route('posts.detail', ['post' => $post->slug]) }}" class="hover:underline">
                         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {{ $post->title }}</h2>
                     </a>

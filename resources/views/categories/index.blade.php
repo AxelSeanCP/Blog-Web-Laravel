@@ -1,10 +1,14 @@
 <x-layout title="{{ $title }}">
+    @if (session()->has('success'))
+        <x-alert message="{{ session('success') }}"></x-alert>
+    @endif
+
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
         @foreach ($categories as $category)
-            <div class="w-full p-4 bg-white rounded-lg shadow-md">
-                <p>{{ $category->name }}</p>
-                <p>{{ $category->color }}</p>
-                <p>{{ $category->slug }}</p>
+            <div class="w-full p-4 rounded-lg shadow-md flex items-center justify-center bg-white"
+                style="background-color: {{ $category->color }}">
+                <p class="text-2xl font-semibold text-primary-800">{{ $category->name }}
+                </p>
             </div>
         @endforeach
         <a href="{{ route('categories.create') }}"

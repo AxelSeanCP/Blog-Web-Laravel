@@ -1,4 +1,8 @@
 <x-layout title="{{ $title }}">
+    @if (session()->has('success'))
+        <x-alert message="{{ session('success') }}"></x-alert>
+    @endif
+
     <x-search-input></x-search-input>
 
     {{ $posts->links() }}
@@ -10,8 +14,8 @@
                     class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <span
-                            class="text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-
+                            class="text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800"
+                            style="background-color: {{ $post->category->color }};">
                             <a href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                         </span>
                         <span class="text-sm">{{ $post->created_at->diffForHumans() }}</span>
@@ -20,7 +24,8 @@
                         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {{ $post->title }}</h2>
                     </a>
-                    <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($post->body, 150) }}
+                    <p class="mb-5 font-light overflow-hidden text-gray-500 dark:text-gray-400">
+                        {{ Str::limit($post->body, 100) }}
                     </p>
                     <div class="flex justify-between items-center">
                         <a href="/posts?author={{ $post->author->username }}">

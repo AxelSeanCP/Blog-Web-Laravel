@@ -1,7 +1,7 @@
 @props(['title' => 'Blog Web'])
 
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-100">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">

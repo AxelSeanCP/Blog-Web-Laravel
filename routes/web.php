@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::get('/posts/{post:slug}', [PostController::class, 'detail'])->name('posts.detail');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
 
     Route::get('/categories', [CategoryController::class, 'show'])->name('categories.index');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');

@@ -16,7 +16,7 @@
 
         <a href="{{ route('posts.create') }}">
             <button
-                class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-500 via-orange-500 to-pink-500 group-hover:from-red-500 group-hover:via-orange-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800">
                 <span
                     class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
                     Write your own blog!
@@ -26,7 +26,8 @@
 
         <form action="/logout" method="POST">
             @csrf
-            <button type="submit" class="px-4 py-2 rounded-md shadow-md bg-red-500 text-white">Logout</button>
+            <button type="submit"
+                class="px-4 py-2 rounded-md shadow-md bg-red-500 text-white hover:bg-red-600">Logout</button>
         </form>
     </div>
 </x-layout>

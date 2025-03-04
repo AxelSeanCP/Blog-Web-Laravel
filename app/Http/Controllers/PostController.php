@@ -46,4 +46,36 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Blog added successfully');
     }
+
+    public function edit(Post $post)
+    {
+        $categories = Category::all();
+        return view('posts.edit', ['title' => 'Edit Post', 'post' => $post, 'categories' => $categories]);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'category_id' => 'required|string',
+            'body' => 'required|string'
+        ]);
+
+        $slug = Str::slug($request->title);
+
+        $post->update([
+            'title' => $request->title,
+            'slug' => $slug,
+            'category_id' => $request->category_id,
+            'body' => $request->body,
+        ]);
+
+        return redirect()->route('posts.index')->with('success', 'Blog updated successfully');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'Blog deleted successfully');
+    }
 }

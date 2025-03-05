@@ -5,8 +5,8 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -23,8 +23,13 @@ Route::post('/logout', [LogoutController::class, 'logout']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
-        return view('home', ['title' => 'Home Page', 'user' => Auth::user()]);
+        return view('home', ['title' => 'Home', 'user' => Auth::user()]);
     });
+    Route::put('/users/{user:username}', [UserController::class, 'update'])->name('users.update');
+
+    Route::get('/categories', [CategoryController::class, 'show'])->name('categories.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
     Route::get('/posts', [PostController::class, 'show'])->name('posts.index');    
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
@@ -33,10 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
-
-    Route::get('/categories', [CategoryController::class, 'show'])->name('categories.index');
-    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
     Route::get('/about', function () {
         return view('about', ['name' => 'Axel Sean Cahyono Putra', 'title' => 'About']);

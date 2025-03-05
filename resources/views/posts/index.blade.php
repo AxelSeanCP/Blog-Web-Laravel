@@ -30,7 +30,8 @@
                     <div class="flex justify-between items-center">
                         <a href="/posts?author={{ $post->author->username }}">
                             <div class="flex items-center space-x-3">
-                                <img class="w-7 h-7 rounded-full" src="{{ asset('img/kayoko.jpg') }}"
+                                <img class="w-7 h-7 rounded-full"
+                                    src="{{ asset('storage/images/' . $post->author->photo) }}"
                                     alt="{{ $post->author->name }}" />
                                 <span class="font-medium text-sm dark:text-white">
                                     {{ $post->author->name }}

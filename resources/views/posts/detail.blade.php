@@ -8,7 +8,8 @@
                         posts</a>
                     <address class="flex items-center my-6 not-italic">
                         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                            <img class="mr-4 w-16 h-16 rounded-full" src="{{ asset('img/tenochtitlan.png') }}"
+                            <img class="mr-4 w-16 h-16 rounded-full"
+                                src="{{ asset('storage/images/' . $post->author->photo) }}"
                                 alt="{{ $post->author->name }}">
                             <div>
                                 <a href="/posts?author={{ $post->author->username }}" rel="author"
